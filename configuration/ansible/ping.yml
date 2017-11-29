@@ -1,0 +1,5 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: Ping the target hosts
+      ping:

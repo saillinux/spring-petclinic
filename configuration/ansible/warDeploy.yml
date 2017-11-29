@@ -1,0 +1,30 @@
+---
+- hosts: "{{ hosts }}"
+  vars:
+  - warName: ROOT.war
+  - warLocalPath: /tmp/workspace/cicd-developer-tasks-pipeline/deployments
+  - warRemotePath: /tmp
+  - warTargetPath: /var/lib/tomcat/webapps/ROOT
+
+  tasks:
+  - name: Copy WAR to server
+    copy:
+      src: "{{ warLocalPath }}/{{ warName }}"
+      dest: "{{ warRemotePath }}"
+      owner: tomcat
+      group: tomcat
+      mode: 0755
+    register: copy_war
+
+  - name: Unzip WAR file
+    unarchive: src="{{ warRemotePath }}/{{ warName }}" dest="{{ warTargetPath }}" copy=no mode=0755 owner=tomcat group=tomcat
+    notify:
+      - restart tomcat
+    when: not ansible_check_mode
+
+  - name: Delete remote war file
+    file: path={{ warRemotePath }}/{{ warName }} state=absent
+
+  handlers:
+    - name: restart tomcat
+      service: name=tomcat state=restarted
