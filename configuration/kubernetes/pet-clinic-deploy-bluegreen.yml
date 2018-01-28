@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: petclinic-blue
+  name: petclinic-bluegreen-update-version
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         name: petclinic-bg
-        version: updatethis
+        version: update-version
     spec:
       containers:
         - name: petclinic
-          image: ecr-image
+          image: update-version
       imagePullSecrets:
         - name: my-docker-credentials
