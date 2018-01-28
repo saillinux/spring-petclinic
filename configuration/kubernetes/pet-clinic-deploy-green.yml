@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: petclinic
+  name: petclinic-green
 spec:
   replicas: 2
   template:
     metadata:
       labels:
-        name: petclinic
+        name: petclinic-bg
         version: updatethis
     spec:
       containers:
