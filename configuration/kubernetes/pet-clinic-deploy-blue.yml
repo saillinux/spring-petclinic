@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: petclinic
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: petclinic
+        version: updatethis
+    spec:
+      containers:
+        - name: petclinic
+          image: ecr-image
+      imagePullSecrets:
+        - name: my-docker-credentials
