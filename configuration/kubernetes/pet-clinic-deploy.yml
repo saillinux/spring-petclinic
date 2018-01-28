@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: petclinic
 spec:
-  replicas: 8
+  replicas: 4
   template:
     metadata:
       labels:
