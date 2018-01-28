@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: 031852407939.dkr.ecr.us-east-1.amazonaws.com/devops-demo
+          image: ecr-image
       imagePullSecrets:
         - name: my-docker-credentials
