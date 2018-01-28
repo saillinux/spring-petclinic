@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
         - name: petclinic
-          image: update-version
+          image: ecr-image
       imagePullSecrets:
         - name: my-docker-credentials
